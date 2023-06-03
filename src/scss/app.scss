@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#root {
+  display: flex;
+  justify-content: center;
+}
+.App {
+  width: 800px;
+}
+.post {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border:2px solid teal;
+  margin-top: 15px;
+ }
+.btn {
+  width: 80px;
+  height: 40px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: slateblue;
+  color: azure;
+  cursor: pointer ;
+  transition: .2s ease;
+  &:hover {
+    background-color: lighten(slateblue, 9);
+  }
+}
+
+.btn--color {
+  background-color: cornsilk;
+  color: #7d3215;
+  border: 1px solid grey;
+  &:hover {
+    background-color: darken(cornsilk, 9);
+  }
+}
