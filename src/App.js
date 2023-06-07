@@ -7,14 +7,17 @@ import PostList from "./components/PostList";
 import Mybutton from "./components/UI/button/Mybutton";
 import MyInput from "./components/UI/input/MyInput";
 import PostForm from "./components/PostForm";
+import MySelect from "./components/UI/select/MySelect";
 
 function App() {
 
     const [posts, setPosts] = useState([
-        {id: 1, title: 'Javascript 1', body: 'Язык программирования 1'},
-        {id: 2, title: 'Javascript 2', body: 'Язык программирования 2'},
-        {id: 3, title: 'Javascript 3', body: 'Язык программирования 3'}
+        {id: 1, title: 'аа', body: 'про'},
+        {id: 2, title: 'яя', body: 'вил'},
+        {id: 3, title: 'гг', body: 'хых3'}
     ])
+
+    const [selectedSort, setSelectedSort] = useState('')
 
     function createPost(newPost) {
         setPosts([...posts, newPost])
@@ -25,9 +28,30 @@ function App() {
         setPosts(posts.filter(item => item.id !== post.id))
     }
 
+    const sortPosts = (sort) => {
+        setSelectedSort(sort)
+       setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])))
+    }
+
     return (
         <div className="App">
             <PostForm create={createPost}/>
+            <div className="">
+               <hr style={{margin: '15px 0'}} />
+                <div className="">
+                    <input type="text"/>
+                    <MySelect
+                        value={selectedSort}
+                        onChange={sortPosts}
+                        defaultValue='Сонртировка'
+                        options={[
+                            {value: 'title', name: 'По названию'},
+                            {value: 'body', name: 'По описанию' }
+                        ]}
+                    />
+                </div>
+
+            </div>
             {posts.length !== 0
                 ? <PostList posts={posts} title={"Посты про JS"} remove={removePost}/>
                 : <h1 style={{textAlign: 'center'}}>Постов пока нет, добавьте первый.</h1>
